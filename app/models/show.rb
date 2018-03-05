@@ -1,3 +1,4 @@
-class Show < ApplicationController
-  belongs_to :user
+class Show < ActiveRecord::Base
+  belongs_to :user 
+
 end

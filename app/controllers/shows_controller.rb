@@ -13,6 +13,15 @@ class ShowsController < ApplicationController
     erb :'shows/create_show'
   end
 
+  get '/shows/:id' do
+    if logged_in?
+      @show = Show.find_by_id(params[:id])
+      erb :'shows/show_show'
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/shows' do
     if logged_in?
       if params[:headliner] == "" || params[:date] == ""

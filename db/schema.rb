@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305115250) do
+ActiveRecord::Schema.define(version: 20180306014108) do
 
   create_table "shows", force: :cascade do |t|
     t.string "headliner"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20180305115250) do
     t.string "date"
     t.string "doors_at"
     t.integer "user_id"
+    t.string "blurb"
+    t.string "headliner_url"
   end
 
   create_table "users", force: :cascade do |t|

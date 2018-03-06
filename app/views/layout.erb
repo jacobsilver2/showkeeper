@@ -3,13 +3,13 @@
   <head>
     <title>Showkeeper</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
   </head>
   <body>
     <nav>
       <% if logged_in? %>
         
-        <a href="/shows/new"> Create Tweet </a>
+        <a href="/shows/new"> Create Show </a>
         <a href="/logout"> Log Out </a>
         <p>Welcome, <%=current_user.username %></p>
 
@@ -20,7 +20,6 @@
 
     </nav>
     <div class="container">
-      <h1>Showkeeper</h1>
       <%= yield %> 
       
       

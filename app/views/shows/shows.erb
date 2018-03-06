@@ -1,0 +1,10 @@
+<h2> Shows at <%=current_user.venue%> </h2>
+
+<% @shows.each do |show| %>
+  <div>
+    <%= show.date %>
+    <%= show.doors_at %>
+    <%= show.headliner %>
+    <%= show.support %>
+  </div>
+<% end %>

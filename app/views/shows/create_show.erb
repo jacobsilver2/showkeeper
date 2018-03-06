@@ -1,0 +1,14 @@
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
+
+<h2>Add a Show</h2>
+<form action="/shows" method="POST">
+  <p>Date: <input type="text" name="date"></p>
+  <p>Headliner: <input type="text" name="headliner"></p>
+  <p>Support: <input type="text" name="support"></p>
+  <p>Doors: <input type="text" name="doors_at"></p>
+  <p>Blurb: <input type="text" name="blurb"></p>
+  <p>Headliner Website: <input type="text" name="headliner_url"></p>
+  <input class="btn btn-primary" type="submit" value="submit">
+</form>

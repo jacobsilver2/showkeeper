@@ -1,8 +1,8 @@
 <h1><%= @show.date %></h1>
-<h3>Doors open at: <%= @show.doors_at %></h3>
 <h2><a href="<%=@show.headliner_url%>"><%= @show.headliner %></a></h2>
-<p><%= @show.blurb %></p>
-<p><%= @show.support %></p>
+<p>with special guests: <%= @show.support %></p>
+<p><em><%= @show.blurb %></em></p>
+<p>Doors open at: <%= @show.doors_at %></p>
 
 <form method="post" action="/shows/<%=@show.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">

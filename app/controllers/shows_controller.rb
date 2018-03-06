@@ -22,6 +22,19 @@ class ShowsController < ApplicationController
     end
   end
 
+  get '/shows/:id/edit' do
+    if logged_in?
+      @show = Show.find_by_id(params[:id])
+      if @show && @show.user == current_user
+        erb :'shows/edit_show'
+      else
+        redirect to '/shows'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/shows' do
     if logged_in?
       if params[:headliner] == "" || params[:date] == ""
@@ -46,7 +59,7 @@ class ShowsController < ApplicationController
       else
         @show = Show.find_by_id(params[:id])
         if @show && @show.user == current_user
-          if @show.update(content: params[:content])
+          if @show.update(headliner: params[:headliner])
             redirect to "/shows/#{@shows.id}"
           else 
             redirect to "/shows/#{@shows.id}/edit"

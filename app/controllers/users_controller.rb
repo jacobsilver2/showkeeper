@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if !logged_in?
-      erb :'users/create_user', locals: {message: "Please sign up before signing in"}
+      erb :'users/create_user'
     else
       redirect to '/users'
     end
@@ -34,7 +34,9 @@ class UsersController < ApplicationController
 
   post '/signup' do 
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      redirect to '/signup'
+      erb :'users/create_user', :locals => {:message => "Please enter a valid username and password"}
+    elsif User.find_by(username: params[:username])
+      erb :'users/create_user', :locals => {:message => "That username is already taken.  Please try another!"}
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password], :venue => params[:venue])
       @user.save

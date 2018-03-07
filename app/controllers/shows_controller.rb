@@ -1,9 +1,14 @@
+require 'pry'
 class ShowsController < ApplicationController
 
   get '/shows' do
     if logged_in?
       @shows = current_user.shows
-      erb :'shows/shows'
+      if @shows.empty?
+        erb :'shows/shows', locals: {message: "There are currently no shows in the database"}
+      else
+        erb :'shows/shows'
+      end
     else
       redirect to '/login'
     end
@@ -54,15 +59,15 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     if logged_in?
-      if params[:date] == "" || params[:headliner]
+      if params[:date] == "" || params[:headliner] == ""
         redirect to "/shows/#{params[:id]}/edit"
       else
         @show = Show.find_by_id(params[:id])
         if @show && @show.user == current_user
           if @show.update(headliner: params[:headliner])
-            redirect to "/shows/#{@shows.id}"
+            redirect to "/shows/#{@show.id}"
           else 
-            redirect to "/shows/#{@shows.id}/edit"
+            redirect to "/shows/#{@show.id}/edit"
           end
         else 
           redirect to '/shows'

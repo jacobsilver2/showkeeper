@@ -4,9 +4,12 @@
 <p><em><%= @show.blurb %></em></p>
 <p>Doors open at: <%= @show.doors_at %></p>
 
+<form action="/shows/<%=@show.id%>/edit">
+<input class="btn btn-primary btn-xs" type="submit" value="Edit Show" />
+</form>
+<br>
 <form method="post" action="/shows/<%=@show.id%>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Show">
+  <input class="btn btn-primary btn-xs" type="submit" value="Delete Show">
 </form>
 
-<a href="/shows/<%=@show.id%>/edit">Edit Show</a>

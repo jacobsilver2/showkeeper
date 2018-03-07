@@ -65,6 +65,7 @@ class ShowsController < ApplicationController
         @show = Show.find_by_id(params[:id])
         if @show && @show.user == current_user
           if @show.update(headliner: params[:headliner])
+            @show.update(date: params[:date], support: params[:support], blurb: params[:blurb], headliner_url: params[:headliner_url], doors_at: params[:doors_at])
             redirect to "/shows/#{@show.id}"
           else 
             redirect to "/shows/#{@show.id}/edit"

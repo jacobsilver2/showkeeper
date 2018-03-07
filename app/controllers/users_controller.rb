@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/shows"
     else
-      redirect to '/signup'
+      erb :'users/login', :locals => {:message => "Username or password is incorrect.  Please try again."}
     end
   end
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       erb :'users/create_user', :locals => {:message => "Please enter a valid username and password"}
     elsif User.find_by(username: params[:username])
-      erb :'users/create_user', :locals => {:message => "That username is already taken.  Please try another!"}
+    erb :'users/create_user', :locals => {:message => "That username is already taken.  Please try another!"}
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password], :venue => params[:venue])
       @user.save

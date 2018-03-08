@@ -43,7 +43,11 @@ class ShowsController < ApplicationController
   post '/shows' do
     if logged_in?
       if params[:headliner] == "" || params[:date] == ""
-        erb :'/shows/create_show', locals: {message: "Please enter a valid headliner and date"}
+        if params[:headliner == ""]
+          erb :'/shows/create_show', locals: {message: "Please enter a valid headliner"}
+        else
+          erb :'/shows/create_show', locals: {message: "Please enter a valid date"}
+        end
       else
         @show = current_user.shows.build(date: params[:date], headliner: params[:headliner], headliner_url: params[:headliner_url], doors_at: params[:doors_at], support: params[:support], blurb: params[:blurb])
         if @show.save
